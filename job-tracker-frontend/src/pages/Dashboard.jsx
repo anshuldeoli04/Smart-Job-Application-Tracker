@@ -9,9 +9,9 @@ export default function Dashboard() {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   fetchData();
-  // },  [fetchData]);
+  useEffect(() => {
+    fetchData();
+  },  []);
 
   const fetchData = async () => {
   const fetchData = useCallback(async () => {
