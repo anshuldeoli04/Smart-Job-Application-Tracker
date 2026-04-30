@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import API from '../services/Api';
 
@@ -8,25 +9,30 @@ export default function Dashboard() {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+  // useEffect(() => {
+  //   fetchData();
+  // },  [fetchData]);
 
   const fetchData = async () => {
-    try {
-      const [statsRes, jobsRes] = await Promise.all([
-        API.get('/dashboard'),
-        API.get('/jobs'),
-      ]);
-      setStats(statsRes.data);
-      setJobs(jobsRes.data);
-    } catch {
-      localStorage.removeItem('token');
-      navigate('/');
-    } finally {
-      setLoading(false);
-    }
-  };
+  const fetchData = useCallback(async () => {
+  try {
+    const [statsRes, jobsRes] = await Promise.all([
+      API.get('/dashboard'),
+      API.get('/jobs'),
+    ]);
+    setStats(statsRes.data);
+    setJobs(jobsRes.data);
+  } catch {
+    localStorage.removeItem('token');
+    navigate('/');
+  } finally {
+    setLoading(false);
+  }
+}, [navigate]); // navigate stable hai, loop nahi aayega
+
+useEffect(() => {
+  fetchData();
+}, [fetchData]);
 
   const logout = () => {
     localStorage.removeItem('token');
