@@ -253,9 +253,6 @@ Result saved to MySQL + shown to user
 
 ---
 
-## 📄 License
-
-MIT License — feel free to use and modify.
 
 ---
 
