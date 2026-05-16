@@ -4,6 +4,13 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 src/main/resources/application.properties
+src/main/resources/application-local.properties
+src/main/resources/application-dev.properties
+src/main/resources/application-prod.properties
+.env
+.env.*
+!.env.example
+!.env.sample
 
 ### STS ###
 .apt_generated
@@ -32,3 +39,13 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# Frontend build artifacts
+job-tracker-frontend/node_modules/
+job-tracker-frontend/build/
+
+# Node / Frontend
+node_modules/
+**/node_modules/
+dist/
+build/
